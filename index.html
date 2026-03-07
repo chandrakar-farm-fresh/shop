@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chandrakar Farm Fresh | Natural Rice & Gram from Bhilai</title><meta name="google-site-verification" content="uqKMJREfCsKH_1cZZicpCVmg9BUGuUsyR50I3kcay8Y" />
-    <meta name="description" content="Direct from our farm in Bhilai, Chhattisgarh to your table. Shop premium, naturally grown Sona Masuri rice, whole Bengal gram, and unpolished Toor Dal.">
-    <meta name="keywords" content="Chandrakar Farm, farm fresh rice Bhilai, natural gram Chhattisgarh, direct from farmer, Dhaan Ka Katora">   <link rel="stylesheet" href="style.css">
+    <title>Chandrakar Farm Fresh</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -28,10 +27,6 @@
     </header>
 
     <section id="home" class="hero">
-        <video autoplay loop muted playsinline class="hero-video">
-            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        </video>
-        <div class="hero-overlay"></div>
         <div class="hero-content">
             <h2>From Our Fields to Your Table</h2>
             <p>100% natural, farm-fresh produce from the heart of the Rice Bowl. Grown with care, delivered with love.</p>
@@ -43,10 +38,10 @@
         <div class="heritage-container">
             <div class="heritage-text">
                 <h2 class="section-title" style="text-align: left;">The Dhaan Ka Katora Heritage</h2>
-                <p>Rooted in the rich, fertile soils of Bhilai, Chhattisgarh, our farm is part of a region historically revered as the Rice Bowl of India. We honor this legacy by rejecting mass-production shortcuts. Our focus is on the micro-details of farming—nurturing the soil, timing the harvest perfectly, and delivering grains that retain their natural aroma, texture, and nutritional integrity.</p>
+                <p>Rooted in the rich, fertile soils of Chhattisgarh, our farm is part of a region historically revered as the Rice Bowl of India. We honor this legacy by rejecting mass-production shortcuts. Our focus is on the micro-details of farming—nurturing the soil, timing the harvest perfectly, and delivering grains that retain their natural aroma, texture, and nutritional integrity.</p>
             </div>
             <div class="heritage-image">
-                <img src="https://placehold.co/500x350/2d6a4f/ffffff?text=Bhilai+Farm+Soil" alt="Rich soil of our farm">
+                <img src="PXL_20241103_104357478.jpg" alt="Rich soil of our farm">
             </div>
         </div>
     </section>
@@ -83,10 +78,10 @@
     <main id="shop" class="shop-section">
         <h2 class="section-title">Fresh Harvest</h2>
         <div class="product-grid">
-            
             <div class="product-card" id="product-1">
-                <div class="harvest-badge">Harvested: Feb 2026</div>
-                <img src="https://placehold.co/400x300/e2e8f0/475569?text=Premium+Rice" alt="Premium Rice">
+                <div class="harvest-badge">Harvested: Feb 2026</div>   
+                <!-- <img src="https://placehold.co/400x300/e2e8f0/475569?text=Premium+Rice" alt="Premium Rice"> -->
+                 <img src="IMG_3162.jpg "alt="Premium Rice">
                 <div class="product-info">
                     <h3>Premium Sona Masuri Rice (25kg)</h3>
                     <p class="price" id="price-display-1">₹1200</p>
@@ -100,7 +95,16 @@
                         </label>
                     </div>
 
-                    <button class="add-to-cart-btn" onclick="addToCart('Premium Sona Masuri Rice (25kg)', 1, 1200, 1080)">Add to Cart</button>
+                    <button id="add-btn-1" class="add-to-cart-btn" onclick="addToCart('Premium Sona Masuri Rice (25kg)', 1, 1200, 1080)">Add to Cart</button>
+                    
+                    <div id="qty-ui-1" class="qty-ui" style="display: none;">
+                        <div class="card-qty-row">
+                            <button class="qty-btn" onclick="modifyCardQty(1, -1)">-</button>
+                            <span id="card-qty-1" class="qty-text">1</span>
+                            <button class="qty-btn" onclick="modifyCardQty(1, 1)">+</button>
+                        </div>
+                        <button class="go-to-cart-btn" onclick="openCart()">Go to Cart</button>
+                    </div>
                 </div>
             </div>
 
@@ -120,9 +124,262 @@
                         </label>
                     </div>
 
-                    <button class="add-to-cart-btn" onclick="addToCart('Whole Bengal Gram (1kg)', 2, 95, 85)">Add to Cart</button>
+                    <button id="add-btn-2" class="add-to-cart-btn" onclick="addToCart('Whole Bengal Gram (1kg)', 2, 95, 85)">Add to Cart</button>
+                    
+                    <div id="qty-ui-2" class="qty-ui" style="display: none;">
+                        <div class="card-qty-row">
+                            <button class="qty-btn" onclick="modifyCardQty(2, -1)">-</button>
+                            <span id="card-qty-2" class="qty-text">1</span>
+                            <button class="qty-btn" onclick="modifyCardQty(2, 1)">+</button>
+                        </div>
+                        <button class="go-to-cart-btn" onclick="openCart()">Go to Cart</button>
+                    </div>
                 </div>
             </div>
+
+
+
+
+
+
+
+
+            <div class="product-card" id="product-3">
+                <div class="harvest-badge">Harvested: Feb 2026</div>
+                <img src="https://placehold.co/400x300/e2e8f0/475569?text=Whole+Bengal+Gram" alt="Bengal Gram">
+                <div class="product-info">
+                    <h3>Whole Bengal Gram (1kg)</h3>
+                    <p class="price" id="price-display-3">₹95</p>
+                    
+                    <div class="purchase-options">
+                        <label>
+                            <input type="radio" name="sub-3" value="one-time" checked onchange="updatePrice(3, 95, 85)"> One-Time
+                        </label>
+                        <label>
+                            <input type="radio" name="sub-3" value="subscribe" onchange="updatePrice(3, 95, 85)"> Monthly Box (Save 10%)
+                        </label>
+                    </div>
+
+                    <button id="add-btn-3" class="add-to-cart-btn" onclick="addToCart('Whole Bengal Gram (1kg)', 3, 95, 85)">Add to Cart</button>
+
+                    <div id="qty-ui-3" class="qty-ui" style="display: none;">
+                        <div class="card-qty-row">
+                            <button class="qty-btn" onclick="modifyCardQty(3, -1)">-</button>
+                            <span id="card-qty-3" class="qty-text">1</span>
+                            <button class="qty-btn" onclick="modifyCardQty(3, 1)">+</button>
+                        </div>
+                        <button class="go-to-cart-btn" onclick="openCart()">Go to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="product-card" id="product-4">
+                <div class="harvest-badge">Harvested: Feb 2026</div>
+                <img src="https://placehold.co/400x300/e2e8f0/475569?text=Whole+Bengal+Gram" alt="Bengal Gram">
+                <div class="product-info">
+                    <h3>Whole Bengal Gram (1kg)</h3>
+                    <p class="price" id="price-display-4">₹95</p>
+                    
+                    <div class="purchase-options">
+                        <label>
+                            <input type="radio" name="sub-4" value="one-time" checked onchange="updatePrice(4, 95, 85)"> One-Time
+                        </label>
+                        <label>
+                            <input type="radio" name="sub-4" value="subscribe" onchange="updatePrice(4, 95, 85)"> Monthly Box (Save 10%)
+                        </label>
+                    </div>
+
+                    <button id="add-btn-4" class="add-to-cart-btn" onclick="addToCart('Whole Bengal Gram (1kg)', 4, 95, 85)">Add to Cart</button>
+
+                    <div id="qty-ui-4" class="qty-ui" style="display: none;">
+                        <div class="card-qty-row">
+                            <button class="qty-btn" onclick="modifyCardQty(4, -1)">-</button>
+                            <span id="card-qty-4" class="qty-text">1</span>
+                            <button class="qty-btn" onclick="modifyCardQty(4, 1)">+</button>
+                        </div>
+                        <button class="go-to-cart-btn" onclick="openCart()">Go to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="product-card" id="product-2">
+                <div class="harvest-badge">Harvested: Feb 2026</div>
+                <img src="https://placehold.co/400x300/e2e8f0/475569?text=Whole+Bengal+Gram" alt="Bengal Gram">
+                <div class="product-info">
+                    <h3>Whole Bengal Gram (1kg)</h3>
+                    <p class="price" id="price-display-2">₹95</p>
+                    
+                    <div class="purchase-options">
+                        <label>
+                            <input type="radio" name="sub-2" value="one-time" checked onchange="updatePrice(2, 95, 85)"> One-Time
+                        </label>
+                        <label>
+                            <input type="radio" name="sub-2" value="subscribe" onchange="updatePrice(2, 95, 85)"> Monthly Box (Save 10%)
+                        </label>
+                    </div>
+
+                    <button id="add-btn-2" class="add-to-cart-btn" onclick="addToCart('Whole Bengal Gram (1kg)', 2, 95, 85)">Add to Cart</button>
+                    
+                    <div id="qty-ui-2" class="qty-ui" style="display: none;">
+                        <div class="card-qty-row">
+                            <button class="qty-btn" onclick="modifyCardQty(2, -1)">-</button>
+                            <span id="card-qty-2" class="qty-text">1</span>
+                            <button class="qty-btn" onclick="modifyCardQty(2, 1)">+</button>
+                        </div>
+                        <button class="go-to-cart-btn" onclick="openCart()">Go to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="product-card" id="product-2">
+                <div class="harvest-badge">Harvested: Feb 2026</div>
+                <img src="https://placehold.co/400x300/e2e8f0/475569?text=Whole+Bengal+Gram" alt="Bengal Gram">
+                <div class="product-info">
+                    <h3>Whole Bengal Gram (1kg)</h3>
+                    <p class="price" id="price-display-2">₹95</p>
+                    
+                    <div class="purchase-options">
+                        <label>
+                            <input type="radio" name="sub-2" value="one-time" checked onchange="updatePrice(2, 95, 85)"> One-Time
+                        </label>
+                        <label>
+                            <input type="radio" name="sub-2" value="subscribe" onchange="updatePrice(2, 95, 85)"> Monthly Box (Save 10%)
+                        </label>
+                    </div>
+
+                    <button id="add-btn-2" class="add-to-cart-btn" onclick="addToCart('Whole Bengal Gram (1kg)', 2, 95, 85)">Add to Cart</button>
+                    
+                    <div id="qty-ui-2" class="qty-ui" style="display: none;">
+                        <div class="card-qty-row">
+                            <button class="qty-btn" onclick="modifyCardQty(2, -1)">-</button>
+                            <span id="card-qty-2" class="qty-text">1</span>
+                            <button class="qty-btn" onclick="modifyCardQty(2, 1)">+</button>
+                        </div>
+                        <button class="go-to-cart-btn" onclick="openCart()">Go to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="product-card" id="product-2">
+                <div class="harvest-badge">Harvested: Feb 2026</div>
+                <img src="https://placehold.co/400x300/e2e8f0/475569?text=Whole+Bengal+Gram" alt="Bengal Gram">
+                <div class="product-info">
+                    <h3>Whole Bengal Gram (1kg)</h3>
+                    <p class="price" id="price-display-2">₹95</p>
+                    
+                    <div class="purchase-options">
+                        <label>
+                            <input type="radio" name="sub-2" value="one-time" checked onchange="updatePrice(2, 95, 85)"> One-Time
+                        </label>
+                        <label>
+                            <input type="radio" name="sub-2" value="subscribe" onchange="updatePrice(2, 95, 85)"> Monthly Box (Save 10%)
+                        </label>
+                    </div>
+
+                    <button id="add-btn-2" class="add-to-cart-btn" onclick="addToCart('Whole Bengal Gram (1kg)', 2, 95, 85)">Add to Cart</button>
+                    
+                    <div id="qty-ui-2" class="qty-ui" style="display: none;">
+                        <div class="card-qty-row">
+                            <button class="qty-btn" onclick="modifyCardQty(2, -1)">-</button>
+                            <span id="card-qty-2" class="qty-text">1</span>
+                            <button class="qty-btn" onclick="modifyCardQty(2, 1)">+</button>
+                        </div>
+                        <button class="go-to-cart-btn" onclick="openCart()">Go to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="product-card" id="product-2">
+                <div class="harvest-badge">Harvested: Feb 2026</div>
+                <img src="https://placehold.co/400x300/e2e8f0/475569?text=Whole+Bengal+Gram" alt="Bengal Gram">
+                <div class="product-info">
+                    <h3>Whole Bengal Gram (1kg)</h3>
+                    <p class="price" id="price-display-2">₹95</p>
+                    
+                    <div class="purchase-options">
+                        <label>
+                            <input type="radio" name="sub-2" value="one-time" checked onchange="updatePrice(2, 95, 85)"> One-Time
+                        </label>
+                        <label>
+                            <input type="radio" name="sub-2" value="subscribe" onchange="updatePrice(2, 95, 85)"> Monthly Box (Save 10%)
+                        </label>
+                    </div>
+
+                    <button id="add-btn-2" class="add-to-cart-btn" onclick="addToCart('Whole Bengal Gram (1kg)', 2, 95, 85)">Add to Cart</button>
+                    
+                    <div id="qty-ui-2" class="qty-ui" style="display: none;">
+                        <div class="card-qty-row">
+                            <button class="qty-btn" onclick="modifyCardQty(2, -1)">-</button>
+                            <span id="card-qty-2" class="qty-text">1</span>
+                            <button class="qty-btn" onclick="modifyCardQty(2, 1)">+</button>
+                        </div>
+                        <button class="go-to-cart-btn" onclick="openCart()">Go to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <div class="product-card" id="product-2">
+                <div class="harvest-badge">Harvested: Feb 2026</div>
+                <img src="https://placehold.co/400x300/e2e8f0/475569?text=Whole+Bengal+Gram" alt="Bengal Gram">
+                <div class="product-info">
+                    <h3>Whole Bengal Gram (1kg)</h3>
+                    <p class="price" id="price-display-2">₹95</p>
+                    
+                    <div class="purchase-options">
+                        <label>
+                            <input type="radio" name="sub-2" value="one-time" checked onchange="updatePrice(2, 95, 85)"> One-Time
+                        </label>
+                        <label>
+                            <input type="radio" name="sub-2" value="subscribe" onchange="updatePrice(2, 95, 85)"> Monthly Box (Save 10%)
+                        </label>
+                    </div>
+
+                    <button id="add-btn-2" class="add-to-cart-btn" onclick="addToCart('Whole Bengal Gram (1kg)', 2, 95, 85)">Add to Cart</button>
+                    
+                    <div id="qty-ui-2" class="qty-ui" style="display: none;">
+                        <div class="card-qty-row">
+                            <button class="qty-btn" onclick="modifyCardQty(2, -1)">-</button>
+                            <span id="card-qty-2" class="qty-text">1</span>
+                            <button class="qty-btn" onclick="modifyCardQty(2, 1)">+</button>
+                        </div>
+                        <button class="go-to-cart-btn" onclick="openCart()">Go to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         </div>
     </main>
@@ -131,7 +388,7 @@
         <h2 class="section-title">Our Farm</h2>
         <div class="about-content">
             <div class="about-text">
-                <h3>Hello, I'm Ansh</h3>
+                <h3>Hello, I'm Nilesh</h3>
                 <p>Welcome to our family's fields. We believe in growing the finest quality produce, bringing it straight from our soil to your kitchen. By cutting out the middlemen, we ensure you get the freshest rice and gram possible, while supporting sustainable farming practices right here at home.</p>
             </div>
             <div class="farm-gallery">
@@ -158,13 +415,67 @@
 
     <div id="toast-container"></div>
 
+    <section id="recipes" class="recipe-section">
+        <h2 class="section-title">From Our Farm to Your Kitchen</h2>
+        <p class="section-subtitle">Traditional recipes perfected with our fresh harvest.</p>
+        <div class="recipe-grid">
+            
+            <div class="recipe-card">
+                <img src="https://placehold.co/400x300/e2e8f0/475569?text=Chhattisgarhi+Fara" alt="Rice Fara">
+                <div class="recipe-content">
+                    <h3>Traditional Rice Fara</h3>
+                    <p>A healthy, steamed dumpling snack made using our freshly milled Sona Masuri rice flour.</p>
+                    <button class="read-more-btn" onclick="alert('Recipe feature coming soon!')">View Recipe</button>
+                </div>
+            </div>
+
+            <div class="recipe-card">
+                <img src="https://placehold.co/400x300/e2e8f0/475569?text=Bengal+Gram+Bara" alt="Gram Bara">
+                <div class="recipe-content">
+                    <h3>Crispy Bengal Gram Bara</h3>
+                    <p>Savory, spiced fritters made from our soaked and ground whole Bengal gram.</p>
+                    <button class="read-more-btn" onclick="alert('Recipe feature coming soon!')">View Recipe</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="faq" class="faq-section">
+        <h2 class="section-title">Curious About Our Harvest?</h2>
+        <div class="faq-container">
+            
+            <div class="faq-item">
+                <button class="faq-question">How is your produce different from the supermarket? <span class="faq-icon">+</span></button>
+                <div class="faq-answer">
+                    <p>Supermarket grains often sit in massive storage silos for months or even years, losing natural moisture and flavor. We harvest, pack, and ship directly from our fields in Bhilai, ensuring peak freshness and maximum nutritional value.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">Do you use chemical pesticides? <span class="faq-icon">+</span></button>
+                <div class="faq-answer">
+                    <p>We rely heavily on traditional, natural farming practices. We focus on soil health and natural pest deterrents to keep our crops safe and healthy without relying on harsh chemicals.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">How does the monthly subscription work? <span class="faq-icon">+</span></button>
+                <div class="faq-answer">
+                    <p>When you subscribe, we reserve a portion of our harvest specifically for your family. We will prepare and ship your box at the beginning of every month, ensuring your kitchen is never out of fresh staples.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
     <footer>
         <p>&copy; 2026 Chandrakar Farm Fresh. All rights reserved.</p>
     </footer>
 
     <script src="script.js"></script>
 </body>
-
 </html>
+
 
 
