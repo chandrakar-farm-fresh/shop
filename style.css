@@ -12,10 +12,33 @@ nav a { text-decoration: none; color: var(--text-dark); font-weight: 600; transi
 nav a:hover { color: var(--primary-green); }
 .cart-icon { font-weight: 600; background: var(--primary-green); color: var(--white); padding: 0.5rem 1rem; border-radius: 20px; cursor: pointer; transition: transform 0.2s; }
 
-/* Hero Section with Video */
-.hero { position: relative; height: 70vh; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--white); overflow: hidden; }
-.hero-video { position: absolute; top: 50%; left: 50%; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -2; transform: translateX(-50%) translateY(-50%); object-fit: cover; }
-.hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(45, 106, 79, 0.7); z-index: -1; }
+.hero {
+    /* 1. Standard Hero Container Properties */
+    position: relative;
+    height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+    
+    /* 2. Photo Background Logic */
+    /* We handle both the image and the green tint gradient here.
+       We set it as 'linear-gradient(tint, tint), url(image)'.
+       The tint needs to be on top to darken the photo for text readability. */
+    background-image: linear-gradient(rgba(45, 106, 79, 0.7), rgba(45, 106, 79, 0.7)), 
+                      url('PXL_20250829_040624709.jpg'); /* <-- REPLACE with your actual farm image filename */
+    
+    /* Standard background behavior */
+    background-size: cover;      /* Scales the image to fill the container */
+    background-position: center; /* Keeps the image centered regardless of screen size */
+    z-index: 1; /* Ensures text is visible above the background layers */
+}
+
+/* DELETED: The video-specific classes '.hero-video' and '.hero-overlay'
+   are no longer needed, as the photo and tint are applied directly to '.hero'. */
+
+/* UNCHANGED: Hero Content Styles */
 .hero-content { z-index: 1; padding: 0 2rem; }
 .hero h2 { font-size: 3.5rem; margin-bottom: 1rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
 .hero p { font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
@@ -83,3 +106,80 @@ footer { background: var(--text-dark); color: var(--white); text-align: center; 
     .timeline-step { min-width: 100%; margin-bottom: 2rem; }
     .cart-sidebar { width: 100%; right: -100%; }
 }
+
+/* Responsive tweaks for Mobile and Tablets */
+@media (max-width: 768px) {
+    /* Stack the navigation menu neatly */
+    .nav-container { 
+        flex-direction: column; 
+        gap: 1rem; 
+        text-align: center; 
+    }
+    nav ul { 
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 1rem; 
+    }
+    
+    /* Make the hero text smaller for phones */
+    .hero h2 { font-size: 2.2rem; }
+    .hero p { font-size: 1rem; }
+    
+    /* Stack the side-by-side grid sections */
+    .heritage-container, .about-content { 
+        grid-template-columns: 1fr; 
+        gap: 2rem;
+    }
+    
+    /* Stack the timeline vertically */
+    .timeline { flex-direction: column; }
+    .timeline-line { display: none; }
+    .timeline-step { 
+        min-width: 100%; 
+        margin-bottom: 2rem; 
+    }
+    
+    /* Make the cart take up the full screen on mobile */
+    .cart-sidebar { 
+        width: 100%; 
+        right: -100%; 
+    }
+}
+
+/* --- Recipe Section --- */
+.recipe-section { max-width: 1200px; margin: 5rem auto; padding: 0 2rem; text-align: center; }
+.section-subtitle { margin-bottom: 3rem; color: #555; font-size: 1.1rem; }
+.recipe-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+.recipe-card { background: var(--white); border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: left; transition: transform 0.3s; }
+.recipe-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+.recipe-card img { width: 100%; height: 200px; object-fit: cover; }
+.recipe-content { padding: 1.5rem; }
+.recipe-content h3 { color: var(--primary-green); margin-bottom: 0.5rem; }
+.recipe-content p { font-size: 0.95rem; margin-bottom: 1.5rem; color: #444; }
+.read-more-btn { background: none; border: 2px solid var(--primary-green); color: var(--primary-green); padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; font-weight: 600; transition: all 0.3s; }
+.read-more-btn:hover { background: var(--primary-green); color: var(--white); }
+
+/* --- FAQ Section --- */
+.faq-section { background: var(--white); padding: 5rem 2rem; }
+.faq-container { max-width: 800px; margin: 0 auto; text-align: left; }
+.faq-item { border-bottom: 1px solid #ddd; margin-bottom: 1rem; }
+.faq-question { width: 100%; background: none; border: none; text-align: left; padding: 1rem 0; font-size: 1.1rem; font-weight: 600; color: var(--text-dark); cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: color 0.3s; }
+.faq-question:hover { color: var(--primary-green); }
+.faq-icon { font-size: 1.5rem; transition: transform 0.3s; }
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+.faq-answer p { padding-bottom: 1.5rem; color: #555; }
+.faq-item.active .faq-icon { transform: rotate(45deg); color: var(--primary-green); }
+
+/* --- New Cart & Card Quantity Controls --- */
+.qty-ui { display: flex; flex-direction: column; gap: 10px; }
+.card-qty-row { display: flex; justify-content: space-between; align-items: center; background: var(--bg-color); padding: 0.5rem; border-radius: 5px; border: 1px solid #ddd; }
+.qty-btn { background: var(--white); border: 1px solid #ccc; width: 32px; height: 32px; display: flex; justify-content: center; align-items: center; cursor: pointer; border-radius: 4px; font-weight: bold; font-size: 1.2rem; transition: background 0.2s; color: var(--text-dark); }
+.qty-btn:hover { background: #eee; }
+.qty-text { font-weight: 600; font-size: 1.1rem; }
+.go-to-cart-btn { background: var(--primary-green); color: var(--white); border: none; padding: 0.8rem; border-radius: 5px; cursor: pointer; width: 100%; font-size: 1.1rem; font-weight: 600; transition: background 0.3s; }
+.go-to-cart-btn:hover { background: #1b4332; }
+
+/* Updates to sidebar cart layout for quantities */
+.cart-item { align-items: flex-start; }
+.qty-controls { display: flex; align-items: center; gap: 15px; margin-top: 8px; }
+.qty-controls span { font-weight: 600; font-size: 1.1rem; }
