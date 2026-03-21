@@ -27,7 +27,7 @@ nav a:hover { color: var(--primary-green); }
        We set it as 'linear-gradient(tint, tint), url(image)'.
        The tint needs to be on top to darken the photo for text readability. */
     background-image: linear-gradient(rgba(45, 106, 79, 0.7), rgba(45, 106, 79, 0.7)), 
-                      url('PXL_20250829_040624709.jpg'); /* <-- REPLACE with your actual farm image filename */
+                      url('rice1.jpg'); /* <-- REPLACE with your actual farm image filename */
     
     /* Standard background behavior */
     background-size: cover;      /* Scales the image to fill the container */
