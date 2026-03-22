@@ -1,7 +1,14 @@
 let cart = []; // Array to hold items with quantities
+let customer = null;
 
 // DOM Elements
 const cartIcon = document.getElementById('cart-icon');
+const loginBtn = document.getElementById('login-btn');
+const userGreeting = document.getElementById('user-greeting');
+const loginModal = document.getElementById('login-modal');
+const closeLogin = document.getElementById('close-login');
+const loginForm = document.getElementById('login-form');
+const loginError = document.getElementById('login-error');
 const cartCountElement = document.getElementById('cart-count');
 const cartSidebar = document.getElementById('cart-sidebar');
 const cartOverlay = document.getElementById('cart-overlay');
@@ -162,6 +169,60 @@ function showToast(productName) {
     setTimeout(() => toast.remove(), 3000);
 }
 
+// --- Login/Customer Info Logic ---
+function loadCustomer() {
+    const stored  = localStorage.getItem('farmCustomer');
+    if (stored) {
+        customer = JSON.parse(stored);
+        userGreeting.innerText = `Welcome, ${customer.name}`;
+        loginBtn.innerText = 'Logout';
+    }
+}
+
+function openLoginModal() {
+    loginError.innerText = '';
+    loginModal.classList.add('active');
+}
+
+function closeLoginModal() {
+    loginModal.classList.remove('active');
+}
+
+function setCustomerProfile(name, email, phone) {
+    customer = { name: name.trim(), email: email.trim(), phone: phone.trim() };
+    localStorage.setItem('farmCustomer', JSON.stringify(customer));
+    userGreeting.innerText = `Welcome, ${customer.name}`;
+    loginBtn.innerText = 'Logout';
+    closeLoginModal();
+}
+
+loginBtn.addEventListener('click', () => {
+    if (customer) {
+        customer = null;
+        localStorage.removeItem('farmCustomer');
+        userGreeting.innerText = 'Welcome, Guest';
+        loginBtn.innerText = 'Login';
+        return;
+    }
+    openLoginModal();
+});
+
+closeLogin.addEventListener('click', closeLoginModal);
+
+loginForm.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const name = document.getElementById('customer-name').value;
+    const email = document.getElementById('customer-email').value;
+    const phone = document.getElementById('customer-phone').value;
+    if (!name || !email || !phone) {
+        loginError.innerText = 'All fields are required.';
+        return;
+    }
+    setCustomerProfile(name, email, phone);
+});
+
+loadCustomer();
+
 // --- WhatsApp Checkout Integration ---
 checkoutBtn.addEventListener('click', () => {
     if (cart.length === 0) {
@@ -170,6 +231,11 @@ checkoutBtn.addEventListener('click', () => {
     }
 
     let message = "🌾 *New Order from Chandrakar Farm Fresh* 🌾\n\n";
+    if (customer) {
+        message += `Customer: ${customer.name} \nEmail: ${customer.email} \nPhone: ${customer.phone} \n\n`;
+    } else {
+        message += "Customer: Guest (login recommended)\n\n";
+    }
     
     // Updated to show quantities in the WhatsApp message
     cart.forEach(item => {
