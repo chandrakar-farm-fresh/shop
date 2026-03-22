@@ -20,6 +20,8 @@
                     <li><a href="#about">The Farm</a></li>
                 </ul>
             </nav>
+            <div id="user-greeting" class="user-greeting">Welcome, Guest</div>
+            <button id="login-btn" class="login-btn">Login</button>
             <div id="cart-icon" class="cart-icon">
                 🛒 Cart <span id="cart-count">0</span>
             </div>
@@ -392,6 +394,26 @@
             </div>
         </div>
     </section>
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-login" class="close-modal">&times;</span>
+            <h2>Customer Login</h2>
+            <p>Enter your customer details to personalize your experience.</p>
+            <form id="login-form">
+                <label for="customer-name">Name</label>
+                <input type="text" id="customer-name" name="customerName" placeholder="Your name" required>
+
+                <label for="customer-email">Email</label>
+                <input type="email" id="customer-email" name="customerEmail" placeholder="you@example.com" required>
+
+                <label for="customer-phone">Phone</label>
+                <input type="tel" id="customer-phone" name="customerPhone" placeholder="+91 12345 67890" pattern="\+?[0-9]{10,15}" required>
+
+                <button type="submit" class="submit-btn">Save Login</button>
+            </form>
+            <p id="login-error" class="login-error" aria-live="polite"></p>
+        </div>
+    </div>
 
     <div id="cart-overlay" class="cart-overlay"></div>
     <div id="cart-sidebar" class="cart-sidebar">
