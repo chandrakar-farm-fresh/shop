@@ -40,6 +40,12 @@ window.updatePrice = function(productId, standardPrice, subPrice) {
     // Refresh the button UI because they might have switched to a variant not in the cart
     updateProductUI(productId);
 }
+window.addToCart = function(baseName, productId, standardPrice, subPrice) {
+    // Add this line to give a tiny 'click' feel on Android phones
+    if (navigator.vibrate) navigator.vibrate(50); 
+    
+    // ... rest of your existing code ...
+}
 
 // --- Add Initial Item to Cart ---
 window.addToCart = function(baseName, productId, standardPrice, subPrice) {
