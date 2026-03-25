@@ -195,3 +195,32 @@ footer { background: var(--text-dark); color: var(--white); text-align: center; 
 .cart-item { align-items: flex-start; }
 .qty-controls { display: flex; align-items: center; gap: 15px; margin-top: 8px; }
 .qty-controls span { font-weight: 600; font-size: 1.1rem; }
+
+
+/* Add this at the very end of your CSS file */
+
+@media (max-width: 480px) {
+    /* Make the logo and nav stack vertically so they don't overlap */
+    .nav-container {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    /* Make product cards full width so they are easy to see */
+    .product-grid {
+        grid-template-columns: 1fr !important; 
+        padding: 0 15px;
+    }
+
+    /* Make buttons bigger so they are easy to tap with a thumb */
+    .add-to-cart-btn, .cta-btn, .checkout-btn {
+        height: 55px;
+        font-size: 1.2rem;
+        border-radius: 10px;
+    }
+
+    /* Shrink the Hero text so it doesn't wrap weirdly */
+    .hero h2 {
+        font-size: 1.8rem;
+    }
+}
